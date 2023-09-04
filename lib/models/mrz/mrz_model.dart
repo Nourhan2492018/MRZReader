@@ -1,13 +1,13 @@
-class UserModel {
-  const UserModel({
+class MRZModel {
+  const MRZModel({
     required this.documentType,
     required this.countryCode,
-    required this.surnames,
-    required this.givenNames,
+    required this.surName,
+    required this.fullName,
     required this.documentNumber,
     required this.nationalityCountryCode,
     required this.birthDate,
-    required this.sex,
+    required this.gender,
     required this.expiryDate,
     required this.personalNumber,
     this.personalNumber2,
@@ -15,12 +15,12 @@ class UserModel {
 
   final String documentType;
   final String countryCode;
-  final String surnames;
-  final String givenNames;
+  final String surName;
+  final String fullName;
   final String documentNumber;
   final String nationalityCountryCode;
   final DateTime birthDate;
-  final String sex;
+  final String gender;
   final DateTime expiryDate;
   final String personalNumber;
   final String? personalNumber2;

@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mrz_reader/widgets/app_color.dart';
+import 'package:mrz_reader/utils/app_color.dart';
 class CustomTextField extends StatefulWidget {
   final String hint;
   final String? hintText;
