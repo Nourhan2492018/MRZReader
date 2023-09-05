@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mrz_reader/providers/mrz_provider.dart';
+import 'package:mrz_reader/providers/mrz/mrz_provider.dart';
 import 'package:mrz_reader/utils/app_assets.dart';
 import 'package:mrz_reader/utils/app_color.dart';
 import 'package:mrz_reader/utils/media_query.dart';

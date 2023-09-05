@@ -11,7 +11,7 @@ import 'package:mrz_reader/widgets/toast/enum.dart';
 import 'package:mrz_reader/widgets/toast/toast.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/mrz_provider.dart';
+import '../../providers/mrz/mrz_provider.dart';
 import '../../utils/app_assets.dart';
 
 class InsertUserPassportScreen extends StatefulWidget {

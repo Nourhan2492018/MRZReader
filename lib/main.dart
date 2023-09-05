@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:mrz_reader/providers/mrz_provider.dart';
+import 'package:mrz_reader/providers/mrz/mrz_provider.dart';
 import 'package:mrz_reader/src/app_root.dart';
 import 'package:provider/provider.dart';
 

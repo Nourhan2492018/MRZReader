@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mrz_reader/utils/app_assets.dart';
 import 'package:mrz_reader/utils/app_color.dart';
-import 'package:mrz_reader/utils/media_query.dart';
 import 'package:mrz_reader/views/all_passports/all_passport_screen.dart';
 import 'package:mrz_reader/views/app_navigator.dart';
-import 'package:mrz_reader/views/image_cropper.dart';
 import 'package:mrz_reader/views/mrz_screen/mrz_screen.dart';
 import 'package:mrz_reader/widgets/custom_cards/custom_card.dart';
-import 'package:provider/provider.dart';
-
-import '../../providers/mrz_provider.dart';
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 

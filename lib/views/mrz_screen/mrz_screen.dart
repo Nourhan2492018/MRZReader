@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mrz_reader/models/mrz/mrz_model.dart';
-import 'package:mrz_reader/providers/mrz_provider.dart';
+import 'package:mrz_reader/providers/mrz/mrz_provider.dart';
 import 'package:mrz_reader/utils/app_color.dart';
 import 'package:mrz_reader/utils/date_time_class.dart';
 import 'package:mrz_reader/views/app_navigator.dart';
