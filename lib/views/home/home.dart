@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mrz_reader/utils/app_assets.dart';
 import 'package:mrz_reader/views/app_navigator.dart';
-import 'package:mrz_reader/views/mrz_screen/mrz_screen.dart';
+import 'package:mrz_reader/views/image_cropper.dart';
+import 'package:mrz_reader/widgets/CustomCard.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,12 +13,20 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          TextButton(onPressed: () {
-            AppNavigator.customNavigator(context: context,
-                screen: MRZScaner(), finish: false);
-          }, child:  Text("Scan")),
+          Center(
+            child: Container(
+                height: 200,
+                width: 200,
+
+                child: GestureDetector(
+                  child: CustomCard("Click to scan a new passport", AppAssets.scannerIcon),
+                  onTap: () {
+                    AppNavigator.customNavigator(
+                        context: context, screen: CustomImageCropper(), finish: false);
+                  },
+                )),
+          ),
         ],
       ),
     );

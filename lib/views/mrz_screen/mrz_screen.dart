@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mrz_reader/models/mrz/mrz_model.dart';
 import 'package:mrz_reader/providers/mrz_provider.dart';
+import 'package:mrz_reader/utils/app_color.dart';
 import 'package:mrz_reader/views/app_navigator.dart';
 import 'package:mrz_reader/views/insert_user_passport/insert_user_passport_screen.dart';
-import 'package:mrz_reader/utils/app_color.dart';
 import 'package:mrz_scanner/mrz_scanner.dart';
 import 'package:provider/provider.dart';
 
