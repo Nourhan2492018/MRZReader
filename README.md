@@ -51,6 +51,6 @@
 <img alt="Screen Shot 2020-09-04 at 2 48 55 PM" src="/img/Db.PNG">
  -->
 
-# 👷🏽 Devolp By
+# 👷🏽 Developed By
 * [Norhan Mahmoud](https://github.com/Nourhan2492018)
 
