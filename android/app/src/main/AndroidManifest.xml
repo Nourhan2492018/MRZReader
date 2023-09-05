@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
     <uses-permission android:name="android.permission.CAMERA"/>
    <application
-        android:label="mrz_reader"
+        android:label="MRZ Reader"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
