@@ -42,7 +42,7 @@ bool checkMRZExit({required String documentNumber })
   return mrzMethods.checkMRZExit(documentNumber:documentNumber);
 
 }
-bool isDelete=false;
+
 Future<bool> deleteMRZFromHive({required MRZModel mrzModel})
 async {
   isLoading=true;
