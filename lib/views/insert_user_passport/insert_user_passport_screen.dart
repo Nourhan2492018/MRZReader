@@ -70,108 +70,118 @@ class _InsertUserPassportScreenState extends State<InsertUserPassportScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(onPressed: (){Navigator.pop(context);},
-        icon: Icon(Icons.arrow_back,color: Colors.white,)),
-        backgroundColor: AppColors.primary,
-        title:Text("Scan Passport Data ",style: TextStyle(fontSize: 18,color: Colors.white),),
-      ),
-      backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,vertical: 16
-            ),
-            child: SingleChildScrollView(
-
-              child: Column(
-                children: [
-                  Hero(
-                    tag: "logo",
-                    child: Image.asset(AppAssets.passportIcon,
-                      color: AppColors.primary,  width: 80,
-                      height: 80,),
-                  ),
-                const SizedBox(height: 16,),
-                  CustomTextField(
-
-                      isClickable: isClickable,
-                      hintText: "Name",
-                      controller: nameController, hint: 'Name',),
-                 const  SizedBox(height: 12,),
-                  CustomTextField(
-                      hintText: 'surName', isClickable: isClickable,
-                      hint: "surName",controller: surNameController),
-                  const  SizedBox(height: 12,),
-                  CustomTextField(hintText: "Doc Number",
-                      isClickable: isClickable,
-                      hint: '',controller: docNumController),
-                  const  SizedBox(height: 12,),
-                  CustomTextField(hint: "Doc Type", isClickable: isClickable,hintText: 'Doc Type',controller: docTypeController),
-                  const  SizedBox(height: 12,),
-                  CustomTextField(hint: '',
-                  hintText: "Nationality Country", isClickable: isClickable,controller: nationalityController),
-                  const  SizedBox(height: 12,),
-                  CustomTextField(hint: "gender", isClickable: isClickable,
-                      hintText: 'Gender',controller:genderController),
-                  const  SizedBox(height: 12,),
-                  CustomTextField(
-                      hintText: 'BirthDate', isClickable: isClickable,
-                      hint: "Birth Day",controller: birthdateController),
-                  const  SizedBox(height: 12,),
-                  CustomTextField(hint: "expiryDate", isClickable: isClickable,hintText: 'expiryDate',controller: expDateController),
-                  const  SizedBox(height: 12,),
-
-                  CustomButton(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    icon: !isClickable ?Icons.edit:Icons.edit_off,
-                    iconColors: Colors.white,
-                    width: context.width,
-                    text: !isClickable?"Open Edit Date":"Close Edit Date",
-                    backgroundColor: AppColors.primary,
-                    fontSize: 16,
-                    fontColor: Colors.white,
-                    onPressed:()=>setState(() {
-                      isClickable=!isClickable;
-                    }),
-
-                  ),
-                  const  SizedBox(height: 8,),
-                  CustomButton(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    icon: Icons.save_outlined,
-                    iconColors: Colors.white,
-                    width: context.width,
-                    text: "Save Date",
-                    backgroundColor: AppColors.primary,
-                    fontSize: 16,
-                    fontColor: Colors.white,
-                    isLoading: context.watch<MRZProvider>().isLoading,
-                    onPressed: ()=>_saveDate(),
-
-                  ),
-
-                ],
-              ),
-            ),
-          ),
-          if(context.watch<MRZProvider>().isLoading)
+    return WillPopScope(
+      onWillPop: () async{
+        AppNavigator.customNavigator(
+            context: context, screen: HomeScreen(), finish: true);
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(onPressed: (){ AppNavigator.customNavigator(
+              context: context, screen: const HomeScreen(), finish: true);},
+          icon: const Icon(Icons.arrow_back,color: Colors.white,)),
+          backgroundColor: AppColors.primary,
+          title:const Text("Scan Passport Data ",style:  TextStyle(fontSize: 18,color: Colors.white),),
+        ),
+        backgroundColor: Colors.white,
+        body: Stack(
+          children: [
             Container(
-            height: context.height,width: context.width,
-            color: Colors.grey.withOpacity(0.5),
-            alignment: Alignment.center,
-            child:  Container(
-              height: 50,width: 50,
-              child: CircularProgressIndicator(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,vertical: 16
+              ),
+              child: SingleChildScrollView(
 
-                backgroundColor: Colors.white,
-                color: AppColors.primary,
+                child: Column(
+                  children: [
+                    Hero(
+                      tag: "logo",
+                      child: Image.asset(AppAssets.passportIcon,
+                        color: AppColors.primary,  width: 80,
+                        height: 80,),
+                    ),
+                  const SizedBox(height: 16,),
+                    CustomTextField(
+
+                        isClickable: isClickable,
+                        hintText: "Name",
+                        keyboardType: TextInputType.name,
+                        controller: nameController, hint: 'Name',),
+                   const  SizedBox(height: 12,),
+                    CustomTextField(
+                        hintText: 'surName', isClickable: isClickable,keyboardType: TextInputType.name,
+                        hint: "surName",controller: surNameController),
+                    const  SizedBox(height: 12,),
+                    CustomTextField(hintText: "Doc Number",
+                        isClickable: isClickable,
+                        keyboardType: TextInputType.number,
+                        hint: '',controller: docNumController),
+                    const  SizedBox(height: 12,),
+                    CustomTextField(hint: "Doc Type", keyboardType: TextInputType.text,isClickable: isClickable,hintText: 'Doc Type',controller: docTypeController),
+                    const  SizedBox(height: 12,),
+                    CustomTextField(hint: '',
+                    hintText: "Nationality Country",keyboardType: TextInputType.text, isClickable: isClickable,controller: nationalityController),
+                    const  SizedBox(height: 12,),
+                    CustomTextField(hint: "gender", isClickable: isClickable,keyboardType: TextInputType.text,
+                        hintText: 'Gender',controller:genderController),
+                    const  SizedBox(height: 12,),
+                    CustomTextField(
+                        hintText: 'BirthDate', isClickable: isClickable,keyboardType: TextInputType.datetime,
+                        hint: "Birth Day",controller: birthdateController),
+                    const  SizedBox(height: 12,),
+                    CustomTextField(hint: "expiryDate",keyboardType: TextInputType.datetime, isClickable: isClickable,hintText: 'expiryDate',controller: expDateController),
+                    const  SizedBox(height: 12,),
+
+                    CustomButton(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      icon: !isClickable ?Icons.edit:Icons.edit_off,
+                      iconColors: Colors.white,
+                      width: context.width,
+                      text: !isClickable?"Open Edit Date":"Close Edit Date",
+                      backgroundColor: AppColors.primary,
+                      fontSize: 16,
+                      fontColor: Colors.white,
+                      onPressed:()=>setState(() {
+                        isClickable=!isClickable;
+                      }),
+
+                    ),
+                    const  SizedBox(height: 8,),
+                    CustomButton(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      icon: Icons.save_outlined,
+                      iconColors: Colors.white,
+                      width: context.width,
+                      text: "Save Date",
+                      backgroundColor: AppColors.primary,
+                      fontSize: 16,
+                      fontColor: Colors.white,
+                      isLoading: context.watch<MRZProvider>().isLoading,
+                      onPressed: ()=>_saveDate(),
+
+                    ),
+
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+            if(context.watch<MRZProvider>().isLoading)
+              Container(
+              height: context.height,width: context.width,
+              color: Colors.grey.withOpacity(0.5),
+              alignment: Alignment.center,
+              child:  Container(
+                height: 50,width: 50,
+                child: CircularProgressIndicator(
+
+                  backgroundColor: Colors.white,
+                  color: AppColors.primary,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -184,7 +194,7 @@ class _InsertUserPassportScreenState extends State<InsertUserPassportScreen> {
          birthDate: birthdateController.text, gender: genderController.text,
          expiryDate: expDateController.text, personalNumber:phoneNumController.text,
      personalNumber2: phoneNum2Controller.text);
-     if(context.read<MRZProvider>().checkMRZExit())
+     if(context.read<MRZProvider>().checkMRZExit(documentNumber: docNumController.text))
      {
        ToastConfig.showToast(context: context,
            msg: "This Passport Already Saved ,\n The Same Document Number",

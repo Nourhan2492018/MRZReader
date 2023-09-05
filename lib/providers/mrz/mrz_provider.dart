@@ -37,11 +37,23 @@ getAllMRZ(){
   notifyListeners();
 
 }
-bool checkMRZExit()
+bool checkMRZExit({required String documentNumber })
 {
-  return mrzMethods.checkMRZExit(documentNumber:_mrzModel!.documentNumber);
+  return mrzMethods.checkMRZExit(documentNumber:documentNumber);
 
 }
-
+bool isDelete=false;
+Future<bool> deleteMRZFromHive({required MRZModel mrzModel})
+async {
+  isLoading=true;
+  notifyListeners();
+  Future.delayed(const Duration(seconds: 4));
+  bool result=await mrzMethods.deleteMRZFromHive(documentNumber:mrzModel.documentNumber);
+  if(result)
+    mrzList.remove(mrzModel);
+  isLoading=false;
+  notifyListeners();
+  return result;
+}
 
 }

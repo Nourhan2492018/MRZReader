@@ -1,10 +1,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:mrz_reader/models/mrz/mrz_model.dart';
+import 'package:mrz_reader/providers/mrz/mrz_provider.dart';
 import 'package:mrz_reader/utils/app_assets.dart';
 import 'package:mrz_reader/utils/app_color.dart';
 import 'package:mrz_reader/widgets/custom_indictor.dart';
+import 'package:mrz_reader/widgets/toast/toast.dart';
 import 'package:provider/provider.dart';
+
+import '../toast/enum.dart';
 class PassportCard extends StatefulWidget {
   final Color? color;
   final MRZModel mrzModel;
@@ -47,9 +51,10 @@ class _PassportCardState extends State<PassportCard> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            flex: 3,
+            flex: 2,
             child:Image.asset(
               AppAssets.passportIcon,
+              fit: BoxFit.fill,
               color:   AppColors.primary.withOpacity(0.5),
             ),
           ),
@@ -167,41 +172,114 @@ class _PassportCardState extends State<PassportCard> {
                   ],
                 ),
               )),
+          GestureDetector(
+            child: Container(
+              width: 40,
+              alignment: Alignment.center,
+              decoration:  BoxDecoration(
+                color: Colors.red.withOpacity(0.6),
+                borderRadius:const  BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
+
+              ),
+              child:const  Icon(Icons.delete,size: 24,color: Colors.white),
+            ),
+            onTap:() {
+              showDialog(
+                context: context,
+                builder: (ctx) => AlertDialog(
+                  backgroundColor: Colors.white,
+
+                  title: Text(
+                    "Are You Sure",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!.copyWith(color: AppColors.primary),
+                  ),
+                  content: Text(
+                    "do You Want delete document number : ${widget.mrzModel.documentNumber}",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!.copyWith(color: AppColors.primary),
+                  ),
+
+                  // actionsAlignment: MainAxisAlignment.center,
+                  actions: [
+
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context)
+                            .pop(false);
+                      },
+                      child: Text(
+                        "cancel",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1!.copyWith(
+                          fontSize: 16,
+                          color: Colors.redAccent
+
+                        ),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: ()async {
+
+                        _deleteMRZ();
+                        Navigator.of(context)
+                            .pop(true);
+                      },
+                      child: Text(
+                        "confirm",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyText1!.copyWith(
+                          fontSize: 16,
+                          color: Colors.green
+                          //    color: AppColors.yellow
+                        ),
+
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            } ,
+          ),
+
         ],
       ),
     );
   }
-}
 
-class StatusContainer extends StatelessWidget {
-  const StatusContainer({
-    Key? key,
-    required this.backgroundColor,
-    required this.text,
-  }) : super(key: key);
-  final Color backgroundColor;
-  final String text;
+  Future<void> _deleteMRZ()
+  async {
+    if( !context.read<MRZProvider>().checkMRZExit(documentNumber: widget.mrzModel.documentNumber ))
+      {
+        ToastConfig.showToast(context: context,
+            msg: "This Passport Don't Exits ",
+            toastStates: ToastStates.Warning);
+      }
+    else
+    {
+      bool res=await context.read<MRZProvider>().deleteMRZFromHive(mrzModel:
+      widget.mrzModel);
+      if(res)
+        ToastConfig.showToast(context: context,
+            msg: "This Passport Deleted Successfully",
+            toastStates: ToastStates.Success);
+      else
+        ToastConfig.showToast(context: context,
+            msg: "This Passport Fail Delete ",
+            toastStates: ToastStates.Error);
 
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-      top: 16,
-      left: 16,
-      child: Container(
-        width: 55,
-        height: 20,
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Center(
-          child: Text(
-            text,
-            style:
-                Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 10),
-          ),
-        ),
-      ),
-    );
+
+    }
+
   }
 }
+
+
+

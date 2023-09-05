@@ -30,16 +30,17 @@ class _AllPassportScreenState extends State<AllPassportScreen> {
         backgroundColor: AppColors.primary,
         title:const Text("All Passports Scan",style: TextStyle(fontSize: 18,color: Colors.white),),
       ),
-      body: context.read<MRZProvider>().isLoading?
-          Container(
-            height: context.height,width: context.width,color: Colors.grey.withOpacity(0.5),
+      body: context.watch<MRZProvider>().isLoading?
+          Center(
+
             child: CircularProgressIndicator(color: AppColors.primary),):
       Container(
+        color: Colors.white,
         height: context.height*0.8,
         alignment: Alignment.center,
         margin: const EdgeInsets.symmetric(horizontal: 8),
         child:
-        context.read<MRZProvider>().mrzList.isEmpty?
+        context.watch<MRZProvider>().mrzList.isEmpty?
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

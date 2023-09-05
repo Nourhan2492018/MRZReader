@@ -15,6 +15,14 @@ class MRZMethods{
   return checkMRZExit(documentNumber: mrzModel.documentNumber);
  }
 
+
+
+ Future<bool> deleteMRZFromHive({required String documentNumber}) async {
+   //
+   await _mrzBox.delete(documentNumber);
+   return checkMRZExit(documentNumber:  documentNumber)?false:true;
+ }
+
  Box<MRZModel> getAllMRZFromHive()  {
   //
   return _mrzBox;
