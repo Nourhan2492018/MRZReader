@@ -69,27 +69,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
       textAlign: widget.isClickable? TextAlign.start:TextAlign.center,
       style: Theme.of(context).textTheme.bodyLarge!
           .copyWith(color: Colors.black),
-      //focusNode: widget.focusNode ?? FocusNode(),
-      inputFormatters: [
-        LengthLimitingTextInputFormatter(widget.maxLength),
-        if (widget.hint == 'Enter Floor' ||
-            widget.hint == 'Enter Building No.' ||
-            widget.hint == 'Enter jadda' ||
-            widget.hint == 'Enter Block')
-          FilteringTextInputFormatter.digitsOnly
-      ],
+
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onTapOutside: (event) {
         FocusScope.of(context).unfocus();
       },
-      ///
-      validator: (value) {
-
-      },
-
-      ///
-      ///
-
       decoration: InputDecoration(
         floatingLabelBehavior:widget.isLabel!? FloatingLabelBehavior.auto:FloatingLabelBehavior.never,
         enabled: widget.isClickable,
@@ -100,42 +84,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
         disabledBorder:widget.border?? _borderDecoration,
 
         labelStyle: TextStyle(fontSize: 12,color:
-        widget.hintColor??Colors.black),
-        // labelStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
-        //       color: Colors.black,
-        //       fontSize: widget.hintTextSize,
-        //       height: 1.7,
-        //
-        //     ),
+        widget.hintColor??AppColors.primary,),
+
         labelText: this.widget.hintText,
-        suffixIcon: widget.isSecured
-            ? IconButton(
-                icon:
-                    Icon(!_isObscure ? Icons.visibility : Icons.visibility_off,color: AppColors.primary,),
-                onPressed: () {
-                  setState(
-                    () {
-                      FocusManager.instance.primaryFocus?.unfocus();
-                      _isObscure = !_isObscure;
-                    },
-                  );
-                },
-              )
-            :widget.isEdit! ?IconButton(
-          icon:
-          Icon(widget.isClickable ?
-          Icons.edit : Icons.edit,color: AppColors.primary,),
-          onPressed: () {
-            setState(
-                  () {
-                widget.isClickable!=widget.isClickable;
-              },
-            );
-          },
-        ): null,
+        suffixIcon: widget.isClickable ?Icon(
+          Icons.edit ,color: AppColors.primary,): Icon(
+          Icons.edit_off ,color: AppColors.primary,),
       ),
       obscureText: _isObscure,
-
       keyboardType: widget.keyboardType,
     );
   }

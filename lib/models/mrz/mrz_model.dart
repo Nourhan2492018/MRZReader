@@ -1,4 +1,8 @@
+import 'package:hive/hive.dart';
+part 'mrz_model.g.dart';
+@HiveType(typeId: 1)
 class MRZModel {
+ 
   const MRZModel({
     required this.documentType,
     required this.countryCode,
@@ -10,18 +14,28 @@ class MRZModel {
     required this.gender,
     required this.expiryDate,
     required this.personalNumber,
-    this.personalNumber2,
+    this.personalNumber2='',
   });
-
-  final String documentType;
-  final String countryCode;
-  final String surName;
+  @HiveField(0)
   final String fullName;
-  final String documentNumber;
-  final String nationalityCountryCode;
-  final DateTime birthDate;
+  @HiveField(1)
   final String gender;
-  final DateTime expiryDate;
+  @HiveField(2)
+  final String birthDate;
+  @HiveField(3)
+  final String nationalityCountryCode;
+  @HiveField(4)
+  final String expiryDate;
+  @HiveField(5)
   final String personalNumber;
+  @HiveField(6)
+  final String documentType;
+  @HiveField(7)
+  final String countryCode;
+  @HiveField(8)
+  final String surName;
+  @HiveField(9)
+  final String documentNumber;
+  @HiveField(10)
   final String? personalNumber2;
 }

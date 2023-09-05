@@ -40,13 +40,19 @@ dependencies:
   mrz_scanner: ^0.0.1+3
   image_picker: ^0.8.5+3
   provider: ^6.0.3
-  image_cropper: ^5.0.0
-  flutter_ocr_sdk: ^1.1.3
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  #image_cropper: ^5.0.0
+  #flutter_ocr_sdk: ^1.1.3
 
 
 dev_dependencies:
+
+
+  hive_generator: ^2.0.0
   flutter_test:
     sdk: flutter
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -54,6 +60,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  build_runner: ^2.3.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -67,6 +74,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/png/
+    - assets/images/gif/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
